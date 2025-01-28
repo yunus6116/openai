@@ -69,9 +69,8 @@ class OpenAIChatCompletionChoiceMessageContentItemModel {
     return {
       "type": type,
       if (text != null) "text": text,
-      if (imageUrl != null) "image_url": imageUrl,
-      if (imageBase64 != null)
-        "image_url": {"url": "data:image/jpeg;base64,${imageBase64}"}
+      if (imageUrl != null) "image_url": {"url": imageUrl},
+      if (imageBase64 != null) "image_url": {"url": "data:image/jpeg;base64,${imageBase64}"}
     };
   }
 
@@ -81,20 +80,14 @@ class OpenAIChatCompletionChoiceMessageContentItemModel {
   ) {
     if (identical(this, other)) return true;
 
-    return other.type == type &&
-        other.text == text &&
-        other.imageUrl == imageUrl &&
-        other.imageBase64 == imageBase64;
+    return other.type == type && other.text == text && other.imageUrl == imageUrl && other.imageBase64 == imageBase64;
   }
 
   @override
   String toString() => switch (type) {
-        'text' =>
-          'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type, text: $text)',
-        'image' =>
-          'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type, imageUrl: $imageUrl)',
-        'image_base64' =>
-          'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type, imageBase64: $imageBase64)',
+        'text' => 'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type, text: $text)',
+        'image' => 'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type, imageUrl: $imageUrl)',
+        'image_base64' => 'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type, imageBase64: $imageBase64)',
         _ => 'OpenAIChatCompletionChoiceMessageContentItemModel(type: $type)',
       };
 }
